@@ -1,0 +1,17 @@
+file_name=input('Введите абсолютный путь файла: ')
+words=input('Введите списко слов чечерз пробел: ')
+words=words.split()
+with open(file_name, encoding='utf-8') as f:
+    text=f.readlines()
+censored=[]
+for line in text:
+    w=0
+    for word in words:
+        if word in line:
+            w+=1
+    if w==0:
+        censored.append(line)
+with open('censored.txt', 'w', encoding='utf-8') as t:
+    for line in censored:
+        t.write(line+'\n')
+print('В файл censored.txt записались строки, не содержащие слов, подлежащие цензуре (без учёта целых чисел)')

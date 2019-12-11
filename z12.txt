@@ -1,0 +1,27 @@
+def corpus(file_name, part=None, num=''):
+    output=[]
+    with open(file_name, encoding='utf-8') as f:
+        text=f.read()
+    text=text.splitlines()
+    for line in text:
+        _, word, _, parts, _, morph, _, _, _, _ = line.split('\t')
+        if part is not None and part!=parts :
+            continue
+        if num!='' and num not in morph :
+            continue
+        output.append((word, morph))
+    return output
+
+def fun(my_str, opt='all'):
+    vow='уеыаоэяию ,.?!;:'
+    output=''
+    if opt=='vow':
+        for i in my_str:
+            if i in vow:
+                output+=i
+    else:
+        output=my_str
+    len=0
+    for i in output:
+        len+=1
+    return (output, len)
